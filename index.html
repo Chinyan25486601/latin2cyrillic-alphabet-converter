@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+            @font-face {
+                font-family: Russian-Handwriting;
+                src: url("./Russkopis-Normalny.otf");
+            }
+        </style>
+        <style type="text/css">
+            body {
+                --font-size: 70px;
+            }
+            div {
+                padding-top: 100px;
+                padding-bottom: 100px;
+            }
+            div.handwriting {
+                font-family: Russian-Handwriting, Helvetica;
+                font-size: var(--font-size);
+            }
+            div.printing {
+                font-family: 'Times New Roman', Times, serif;
+                font-size: var(--font-size);
+            }
+            #txt1 {
+                width: 100%;
+                font-family: Helvetica;
+                font-size: 42px;
+            }
+            .center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            body * {
+                word-wrap: break-word;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" id="txt1"></input>
+        <div class="center">
+            <div class="handwriting" id="showbox1"></div>
+            <div class="printing" id="showbox2"></div>
+        </div>
+        <script>
+            var showbox1 = document.getElementById("showbox1");
+            var showbox2 = document.getElementById("showbox2");
+            var text = document.getElementById("txt1");
+            var handle = function(){
+                var source = text.value;
+                var convert_table = [
+                    ["by","бай"],
+                    ["By","Бай"],
+                    ["The","Дзе"],
+                    ["the","дзе"],
+                    ["t'h","дз"],
+                    ["T'h","Дз"],
+                    ["too","ту"],
+                    ["Too","Ту"],
+                    ["to","ту"],
+                    ["To","Ту"],
+                    ["ss","с"],
+                    ["cc","кс"],
+                    ["Wh","У"],
+                    ["pp","п"],
+                    ["tt","т"],
+                    ["tion","шен"],
+                    ["ph","ф"],
+                    ["Ph","Ф"],
+                    ["q","ку"],
+                    ["Q","Ку"],
+                    ["zh","ж"],
+                    ["Zh","Ж"],
+                    ["sh","ш"],
+                    ["Sh","Ш"],
+                    ["ch","ч"],
+                    ["Ch","Ч"],
+                    ["you","ю"],
+                    ["You","Ю"],
+                    ["yo","ю"],
+                    ["Yo","Ю"],
+                    ["iu","ю"],
+                    ["iu","Ю"],
+                    ["I ","Я "],
+                    ["I'm","Я'м"],
+                    ["ya","я"],
+                    ["Ya","Я"],
+                    ["a","а"],["b","б"],["c","с"],["d","д"],["e","е"],["f","ф"],["g","г"],["h","х"],["i","и"],["j","ж"],["k","к"],["l","л"],["m","м"],["n","н"],["o","о"],["p","п"],["r","р"],["s","с"],["t","т"],["u","у"],["v","в"],["w","у"],["x","с"],["y","й"],["z","з"],["A","А"],["B","Б"],["C","С"],["D","Д"],["E","Е"],["F","Ф"],["G","Г"],["H","Х"],["I","И"],["J","Ж"],["K","К"],["L","Л"],["M","М"],["N","Н"],["O","О"],["P","П"],["R","Р"],["S","С"],["T","Т"],["U","У"],["V","В"],["W","У"],["X","С"],["Y","Й"],["Z","З"],
+                    ["''",""],
+                    ['"',""],
+                    ["  ",""]
+                ];
+                convert_table.forEach(i => {
+                    source = source.replace(new RegExp(i[0],"gm"),i[1]);
+                });
+                showbox1.innerHTML = source;
+                showbox2.innerHTML = source;
+            };
+            text.addEventListener("input",handle,false);
+        </script>
+    </body>
+</html>
